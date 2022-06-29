@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ToyPlaneSimulationWeb/static/css/main.073c9b0a.css",
-    "main.js": "/ToyPlaneSimulationWeb/static/js/main.8b9b7faa.js",
+    "main.js": "/ToyPlaneSimulationWeb/static/js/main.165f07a6.js",
     "static/js/787.037cc4a9.chunk.js": "/ToyPlaneSimulationWeb/static/js/787.037cc4a9.chunk.js",
     "index.html": "/ToyPlaneSimulationWeb/index.html",
     "main.073c9b0a.css.map": "/ToyPlaneSimulationWeb/static/css/main.073c9b0a.css.map",
-    "main.8b9b7faa.js.map": "/ToyPlaneSimulationWeb/static/js/main.8b9b7faa.js.map",
+    "main.165f07a6.js.map": "/ToyPlaneSimulationWeb/static/js/main.165f07a6.js.map",
     "787.037cc4a9.chunk.js.map": "/ToyPlaneSimulationWeb/static/js/787.037cc4a9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.8b9b7faa.js"
+    "static/js/main.165f07a6.js"
   ]
 }
