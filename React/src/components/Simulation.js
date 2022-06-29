@@ -1,10 +1,8 @@
-//import React, { useCallback, useEffect } from "react";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 function Simulation() {
-    //const { unityProvider, addEventListener, removeEventListener } = useUnityContext({
-    const { unityProvider } = useUnityContext({
+    const { unityProvider, addEventListener, removeEventListener } = useUnityContext({
         // local
         loaderUrl: "ToyPlaneSimulationWeb/sim/sim.loader.js",
         dataUrl: "ToyPlaneSimulationWeb/sim/sim.data",
@@ -20,7 +18,6 @@ function Simulation() {
         */
     });
 
-    /*
     const handleSendParams = useCallback(() => {
         console.log('handleSendParams')
     }, []);
@@ -31,7 +28,6 @@ function Simulation() {
             removeEventListener("PingForParams", handleSendParams);
         };
     }, [addEventListener, removeEventListener, handleSendParams]);
-    */
     
     return (
         <Unity
