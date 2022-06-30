@@ -1,12 +1,12 @@
 using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Runtime.InteropServices;
 
 public class StartController : MonoBehaviour
 {
+    public GameObject mNextButton;
+
     [DllImport("__Internal")]
     private static extern void PingForParams();
 
@@ -15,6 +15,7 @@ public class StartController : MonoBehaviour
     {
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
         PingForParams();
+        mNextButton.SetActive(false);
 #endif
     }
 
@@ -27,5 +28,17 @@ public class StartController : MonoBehaviour
     public void MoveToSimScene()
     {
         SceneManager.LoadScene((int)Constants.SceneIndex.SIMULATION);
+    }
+
+    public void ReceiveParams(string paramsJson)
+    {
+        mNextButton.SetActive(true);
+        Debug.Log(paramsJson);
+
+        GameData.planeParams = PlaneParams.CreateFromJSON(paramsJson);
+        Debug.Log("mass: " + GameData.planeParams.mass);
+        Debug.Log("drag: " + GameData.planeParams.drag);
+        Debug.Log("force: " + GameData.planeParams.force);
+        Debug.Log("angle: " + GameData.planeParams.angle);
     }
 }

@@ -16,6 +16,11 @@ public class PlaneController : MonoBehaviour
     {
         mRigidbody = GetComponent<Rigidbody>();
         mFirst = true;
+
+        mAngle = GameData.planeParams.angle;
+        mForce = GameData.planeParams.force;
+        mRigidbody.mass = GameData.planeParams.mass;
+        mRigidbody.drag = GameData.planeParams.drag;
     }
 
     // Fixed Update is for physics update
@@ -46,7 +51,7 @@ public class PlaneController : MonoBehaviour
                 mPrevious = current;
 
                 float finalAngle = Mathf.Min(angle * 0.9f, 0.2f + Random.Range(0.01f, 0.02f));
-                Debug.Log(finalAngle);
+                //Debug.Log(finalAngle);
                 transform.Rotate(Vector3.right, finalAngle);
             }
         }

@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
-function Simulation() {
-    const { unityProvider, addEventListener, removeEventListener } = useUnityContext({
+function Simulation(props) {
+    const { unityProvider, addEventListener, removeEventListener, sendMessage } = useUnityContext({
         // local
         loaderUrl: "ToyPlaneSimulationWeb/sim/sim.loader.js",
         dataUrl: "ToyPlaneSimulationWeb/sim/sim.data",
@@ -18,17 +18,28 @@ function Simulation() {
         */
     });
 
-    const handleSendParams = useCallback(() => {
-        console.log('handleSendParams')
+    const [sendParamsFlag, setSendParamsFlag] = useState(false)
+    const params = useRef(props.params);
+
+    const handlePingForParams = useCallback(() => {
+        console.log('handlePingForParams')
+        setSendParamsFlag(true)
     }, []);
 
     useEffect(() => {
-        addEventListener("PingForParams", handleSendParams);
+        addEventListener("PingForParams", handlePingForParams);
         return () => {
-            removeEventListener("PingForParams", handleSendParams);
+            removeEventListener("PingForParams", handlePingForParams);
         };
-    }, [addEventListener, removeEventListener, handleSendParams]);
-    
+    }, [addEventListener, removeEventListener, handlePingForParams]);
+
+    useEffect(() => {
+        if (sendParamsFlag) {
+            console.log(params)
+            sendMessage("StartController", "ReceiveParams", JSON.stringify(params.current));
+        }
+    }, [sendParamsFlag, params]);
+
     return (
         <Unity
             style={{

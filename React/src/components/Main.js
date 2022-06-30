@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 import ParamsForm from "./ParamsForm";
 import Simulation from "./Simulation";
@@ -38,18 +38,13 @@ class Main extends Component {
         
         switch (this.state.mainState) {
             case MainState.SIMULATION:
-                page = <Simulation />
+                page = <Simulation params={this.state.params} />
                 break;
             case MainState.ENTER_PARAMS:
             default:
-                page = <ParamsForm params={this.state.params} submitParams={this.submitParams}/>
+                page = <ParamsForm params={this.state.params} submitParams={this.submitParams} />
                 break;
         }
-        
-        /*
-        if (this.state.mainState === MainState.ENTER_PARAMS) {
-            page = <ParamsForm params={this.state.params} submitParams={this.submitParams}/>
-        } */
                 
         return (
             <div>
